@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragment :: page_head('My wishlist')"></head>
+
+<body>
+
+    <header th:replace="fragment :: header_page()">
+    </header>
+    <div id="showcase">
+        <div class="container">
+            <div class="showcase-content">
+                <h1><span class="text-primary">Enjoy</span>Your Wishes</h1>
+                <h2 style="color: red">[[${message}]]</h2>
+                <button type="submit" >Create your wishlist</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

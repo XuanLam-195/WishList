@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragment :: page_head('Create')"></head>
+<body>
+
+<header th:replace="fragment :: header_page()">
+</header>
+<div id="showcase">
+    <div class="container-sm showcase-content">
+        <form th:action="@{/create}" method="post" class="row g-3" th:object="${gift}">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">GiftName</label>
+                <input type="text" class="form-control" id="inputEmail4" th:field="*{giftName}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Color</label>
+                <input type="text" class="form-control" id="inputPassword4" th:field="*{color}">
+            </div>
+            <div class="col-4">
+                <label for="inputAddress" class="form-label">Price</label>
+                <input type="number" class="form-control" id="inputAddress" th:field="*{price}">
+            </div>
+            <div class="col-4">
+                <label for="inputAddress2" class="form-label">Discount</label>
+                <input type="number" class="form-control" id="inputAddress2" th:field="*{discount}">
+            </div>
+            <div class="col-md-4">
+                <label for="inputCity" class="form-label">Quantity InStock</label>
+                <input type="number" class="form-control" id="inputCity" th:field="*{quantityInStock}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Gift Type</label>
+                <select th:field="*{giftTypeId}" id="inputState" class="form-select" >
+                    <th:block th:each="type : ${giftTypes}">
+                        <option  th:value="${type.typeId}" > [[${type.typeName}]]</option>
+                    </th:block>
+
+                </select>
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

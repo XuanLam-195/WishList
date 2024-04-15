@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*main styling*/
+
+html, body{
+    font-family: sans-serif;
+
+}
+
+a {
+    color: #333333;
+    text-decoration:  none;
+}
+
+h1, h2, h3 {
+    padding-bottom: 20px;
+}
+
+p {
+    margin: 10px;
+}
+
+#navbar {
+    background-color: #333333;
+    color: #fff;
+    overflow: auto;
+}
+table, th, tr, td {
+    border: 1px solid black;
+}
+#navbar a {
+    color: #fff;
+}
+
+#navbar h1{
+    float: left;
+    padding-top: 20px;
+}
+
+#navbar ul{
+    float: right;
+    list-style: none;
+}
+
+#navbar ul li {
+   display: inline-block;
+    padding: 25px;
+}
+
+#navbar ul li a:hover,
+#navbar ul li a.current{
+    background-color: #444;
+    color: burlywood;
+}
+
+.container {
+    max-width: 1920px;
+    margin: auto;
+}
+
+.text-primary {
+    color: burlywood;
+}
+
+.lead {
+    font-size: 20px;
+}
+
+.btn {
+    display: inline;
+}
+
+.btn {
+    display: inline-block;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #333333;
+    padding: 13px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.hover {
+    background-color: burlywood;
+    color: #333333;
+}
+
+.btn-light {
+    background-color: #f4f4f4;
+    color: #333333;
+}
+
+.btn-dark {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.bg-light {
+    background-color: #f4f4f4;
+    color: #333333;
+}
+
+.bg-primary {
+    background-color: burlywood;
+    color: #333333;
+}
+
+.clr {
+    clear: both;
+}
+
+/*showcase section*/
+#showcase {
+    background-image: url("https://geekflare.com/cdn-cgi/image/width=1200,quality=90,gravity=auto,sharpen=1,metadata=none,format=auto,onerror=redirect/wp-content/uploads/2023/03/wishlist-apps.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 600px;
+}
+
+#showcase .showcase-content{
+    margin-top: 20px;
+}
+
+#showcase h1.text-primary {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+    height: 100%;
+}
+
+#showcase p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+#showcase button {
+  background-color: dodgerblue;
+}
+
+
