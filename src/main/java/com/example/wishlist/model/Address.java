@@ -13,6 +13,10 @@ public class Address {
         this.postCode = postCode;
     }
 
+    public Address() {
+
+    }
+
     public int getAddressId() {
         return addressId;
     }

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragment :: page_head('Create')"></head>
+<head th:replace="fragment :: page_head('Update')"></head>
 <body>
 
 <header th:replace="fragment :: header_page()">
 </header>
 <div id="showcase">
     <div class="container-sm showcase-content">
-        <form th:action="@{/backend/create}" method="post" class="row g-3" th:object="${gift}">
+        <form th:action="@{/backend/gift/update}" method="post" class="row g-3" th:object="${gift}">
+            <input type="text" class="form-control" id="inputEmail00" th:field="*{giftId}" hidden="hidden">
             <div class="col-md-6">
                 <label for="inputEmail4" class="form-label">GiftName</label>
                 <input type="text" class="form-control" id="inputEmail4" th:field="*{giftName}">
@@ -32,14 +33,14 @@
                 <label for="inputState" class="form-label">Gift Type</label>
                 <select th:field="*{giftTypeId}" id="inputState" class="form-select" >
                     <th:block th:each="type : ${giftTypes}">
-                        <option  th:value="${type.typeId}" > [[${type.typeName}]]</option>
+                        <option  th:value="${type.typeId}" th:selected="${type.typeId == gift.giftTypeId}" > [[${type.typeName}]]</option>
                     </th:block>
 
                 </select>
             </div>
 
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Create</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>

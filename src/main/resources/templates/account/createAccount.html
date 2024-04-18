@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragment :: page_head('Create Account')"></head>
+<body>
+
+<header th:replace="fragment :: header_page()">
+</header>
+<div id="showcase">
+    <div class="container-sm showcase-content">
+        <form th:action="@{/createAccount}" method="post" class="row g-3" th:object="${account}">
+            <div class="col-md-6">
+                <label for="inputEmail4" class="form-label">Username</label>
+                <input type="text" class="form-control" id="inputEmail4" th:field="*{username}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputPassword4" class="form-label">Password</label>
+                <input type="number" class="form-control" id="inputPassword4" th:field="*{password}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputAddress" class="form-label">Email</label>
+                <input type="text" class="form-control" id="inputAddress" th:field="*{email}">
+            </div>
+            <div class="col-4">
+                <label for="inputAddress2" class="form-label">Balance</label>
+                <input type="number" class="form-control" id="inputAddress2" th:field="*{balance}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputCity" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="inputCity" th:field="*{fullName}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputTlf" class="form-label">Telefon</label>
+                <input type="number" class="form-control" id="inputTlf" th:field="*{tlf}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label">Address</label>
+                <input type="text" class="form-control" id="inputState" th:field="*{address}">
+            </div>
+
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <p> <a href="/login">Login</a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

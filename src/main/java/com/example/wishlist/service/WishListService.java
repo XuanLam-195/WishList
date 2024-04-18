@@ -1,7 +1,6 @@
 package com.example.wishlist.service;
 
 
-import com.example.wishlist.model.Account;
 import com.example.wishlist.model.Gift;
 import com.example.wishlist.model.GiftType;
 import com.example.wishlist.repository.WishListRepository;
@@ -18,7 +17,12 @@ public class WishListService {
     WishListRepository wishListRepository;
 
     public Gift addGift(Gift gift) {
-        wishListRepository.addGift(gift);
+        if (gift.getGiftId() == null){
+            wishListRepository.addGift(gift);
+        }else{
+            wishListRepository.updateGift(gift);
+        }
+
         return gift;
     }
 
@@ -29,10 +33,13 @@ public class WishListService {
     public List<GiftType> getAllGiftType()  {
         return wishListRepository.findAllGiftType();
     }
+   public Gift findById(int id){
+        return wishListRepository.getGiftById(id);
+   }
+   public void deleteGift(Integer id){
+        wishListRepository.deleteGift(id);
+   }
 
-   public List<Account> getAllAccount(){
-        return wishListRepository.findAllAccount();
-    }
 
 
 }

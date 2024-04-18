@@ -1,23 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head th:fragment="page_head(title)">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/html" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:fragment="page_head(title)" th:remove="none">
   <meta charset="UTF-8">
   <title th:text="${title}"></title>
   <link rel="stylesheet" type="text/css" href="/main.css">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
+
+
 <header th:fragment="header_page()">
   <nav id="navbar">
     <div class="container">
       <h1 class="logo"><a href="#">MyWishList</a></h1>
       <ul>
-        <li><a href="/home" th:class="${title == 'home' ? 'current' : ''}" >Home</a></li>
-        <li><a href="/create" th:class="${title == 'create' ? 'current' : ''}">CreateYourWish</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" >Help</a></li>
-        <li><a href="#" >Account</a></li>
-        <li><a href="#" >Login</a></li>
+        <li><a href="/home" th:class="${title == 'home' ? 'current' : ''}">Home</a></li>
+        <th:block sec:authorize="isAuthenticated()">
+          <li><a href="/backend/list" th:class="${title == 'list' ? 'current' : ''}">YourWishList</a></li>
+          <li><a href="/backend/create" th:class="${title == 'create' ? 'current' : ''}">CreateYourWish</a></li>
+        </th:block>
+
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/help" >Help</a></li>
+        <li><a href="/createAccount" th:class="${title == 'createAccount' ? 'current' : ''}" >Register</a></li>
+        <th:block sec:authorize="!isAuthenticated()">
+          <li><a href="/login" th:class="${title == 'list' ? 'current' : ''}">Login</a></li>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+          <li><a href="/logout" th:class="${title == 'list' ? 'current' : ''}">Logout</a></li>
+        </th:block>
       </ul>
     </div>
   </nav>
