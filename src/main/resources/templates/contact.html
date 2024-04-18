@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <style>
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+            color: midnightblue;
+        }
+    </style>
+</head>
+<body style="background-image: url('https://media.istockphoto.com/id/1455305258/photo/wish-list.jpg?s=612x612&w=0&k=20&c=1MhvGfB_5fND70hzX13fIwEMvqNRdEoeDflYK5sZzEQ='); background-size: contain; background-position: center;">
+<h1>Contact</h1>
+  <p>
+      Do you have a problem, question or suggestion? And you can't find the answer in the frequently asked questions?
+      Then get in touch with My Wishlist here.
+  </p>
+  <form action="/submit-message" method="post">
+      <label th:for="message" >Message</label><br>
+      <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+      <input type="submit" value="Send Message">
+  </form>
+
+</body>
+</html>

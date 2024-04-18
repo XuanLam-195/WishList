@@ -3,7 +3,7 @@ package com.example.wishlist.model;
 import java.util.List;
 
 public class Gift {
-    private int giftId;
+    private Integer giftId;
     private int giftTypeId;
     private String giftName;
     private double price;
@@ -17,7 +17,7 @@ public class Gift {
 
     private List<Gift> giftTypes;
 
-    public Gift(int giftId, int giftTypeId, String giftName, double price, double discount, int quantityInStock, String color, String image) {
+    public Gift(Integer giftId, int giftTypeId, String giftName, double price, double discount, int quantityInStock, String color, String image) {
         this.giftId = giftId;
         this.giftTypeId = giftTypeId;
         this.giftName = giftName;
@@ -28,11 +28,11 @@ public class Gift {
         this.image = image;
     }
 
-    public int getGiftId() {
+    public Integer getGiftId() {
         return giftId;
     }
 
-    public void setGiftId(int giftId) {
+    public void setGiftId(Integer giftId) {
         this.giftId = giftId;
     }
 

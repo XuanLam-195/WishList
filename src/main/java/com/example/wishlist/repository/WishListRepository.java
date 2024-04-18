@@ -2,6 +2,7 @@ package com.example.wishlist.repository;
 
 import com.example.wishlist.config.ConnectionManager;
 import com.example.wishlist.model.Account;
+import com.example.wishlist.model.Address;
 import com.example.wishlist.model.Gift;
 import com.example.wishlist.model.GiftType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,39 @@ public class WishListRepository {
         return  gift;
     }
 
+    public Gift updateGift (Gift gift){
+        String SQL = "UPDATE Gift SET giftTypeId = ?, giftName = ?, price = ?, discount = ?, quantityInStock = ?, color = ?, image = ? Where giftId = ?";
+        Connection conn = this.connectionManager.getConnection();
+        int num = 1;
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
+            pstmt.setInt(num++, gift.getGiftTypeId());
+            pstmt.setString(num++, gift.getGiftName());
+            pstmt.setDouble(num++, gift.getPrice());
+            pstmt.setDouble(num++, gift.getDiscount());
+            pstmt.setInt(num++, gift.getQuantityInStock());
+            pstmt.setString(num++, gift.getColor());
+            pstmt.setString(num++, gift.getImage());
+            pstmt.setInt(num++, gift.getGiftId());
+            pstmt.executeUpdate();
+        }
+
+        catch (SQLException e){
+            throw  new RuntimeException(e);
+        }
+        return  gift;
+    }
+
+    public void deleteGift (Integer id) {
+        String SQL = "DELETE from Gift Where giftId = ? ";
+        Connection conn = this.connectionManager.getConnection();
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
      public List<Gift> findAllGift(){
         List<Gift> gifts = new ArrayList<Gift>();
@@ -70,78 +104,10 @@ public class WishListRepository {
         }
      }
 
-     public Gift editWishList(int id, Gift gift){
-        String SQL = "Update Gift Set" +
-                "giftTypeId = ?" +
-                "giftName = ?" +
-                "price = ?" +
-                "discount = ?" +
-                "quantityInStock = ?" +
-                "color = ?" +
-                "image = ?" +
-                "Where giftId = ?";
-        Connection conn = this.connectionManager.getConnection();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
-          pstmt.setInt(1, gift.getGiftTypeId());
-          pstmt.setString(2, gift.getGiftName());
-          pstmt.setDouble(3, gift.getPrice());
-          pstmt.setDouble(4, gift.getDiscount());
-          pstmt.setInt(5, gift.getQuantityInStock());
-          pstmt.setString(6, gift.getColor());
-          pstmt.setString(7, gift.getImage());
-          pstmt.setInt(8, id);
-          pstmt.executeUpdate();
-          return gift;
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-     }
-
-     public void deleteGift(int giftId){
-        String SQL = "Delete From Gift Where giftId = ?";
-        Connection conn = this.connectionManager.getConnection();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
-            pstmt.setInt(1, giftId);
-            pstmt.execute();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        }
-     }
-
-    public List<GiftType> getGiftTypes(){
-        List<GiftType> giftTypes = new ArrayList<>();
-        String SQL = "Select typeId, typeName From GiftType";
-        Connection conn = this.connectionManager.getConnection();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
-          ResultSet rs =pstmt.executeQuery();
-          while (rs.next()){
-              int typeId = rs.getInt("typeId");
-              String typeName = rs.getString("typeName");
-          }
-          return giftTypes;
-        }catch (SQLException e){
-            throw  new RuntimeException(e);
-        }
-    }
-
-    public String getGiftTypeById(int id){
-        String SQL = "Select typeName From GiftType Where typeId = ?";
-        Connection conn = this.connectionManager.getConnection();
-        try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
-            pstmt.setInt(1, id);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()){
-                return rs.getString("typeName");
-            }
-            return "";
-        }catch (SQLException e){
-            throw  new RuntimeException(e);
-        }
-    }
 
     public Gift getGiftById(int giftId){
         Gift gift = null;
-        String SQL = "Select  giftTypeId, giftName, price, discount, quantityInStock, color, image";
+        String SQL = "Select  * from Gift where giftId = ?";
         Connection conn = this.connectionManager.getConnection();
         try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
             pstmt.setInt(1, giftId);
@@ -154,8 +120,8 @@ public class WishListRepository {
                 int quantityInStock = rs.getInt("quantityInStock");
                 String color = rs.getString("color");
                 String image = rs.getString("image");
-                int typeId = rs.getInt("typeId");
-                gift = new Gift(typeId,giftTypeId, giftName, price, discount, quantityInStock, color, image);
+
+                gift = new Gift(giftId,giftTypeId, giftName, price, discount, quantityInStock, color, image);
                 gift.setGiftId(giftId);
             }
             return gift;
@@ -164,31 +130,7 @@ public class WishListRepository {
         }
     }
 
-     public List<Account> findAllAccount(){
-         List<Account> accounts = new ArrayList<Account>();
-         String SQL = "SELECT accountId, username, password, email, balance, fullName, addressId, tlf FROM Account";
-         Connection conn = this.connectionManager.getConnection();
-         try (PreparedStatement pstmt = conn.prepareStatement(SQL)){
-             ResultSet rs = pstmt.executeQuery();
-             while (rs.next()){
-                 int accountId = rs.getInt("accountId");
-                 String username = rs.getString("username");
-                 String password = rs.getString("password");
-                 String email = rs.getString("email");
-                 double balance = rs.getDouble("balance");
-                 String fullName = rs.getString("fullName");
-                 int addressId = rs.getInt("addressId");
-                 String tlf = rs.getString("tlf");
 
-                 Account account = new Account(accountId, username, password, email, balance, fullName, addressId, tlf );
-                 account.setAccountId(accountId);
-                 accounts.add(account);
-             }
-             return accounts;
-         }catch (SQLException e){
-             throw new RuntimeException(e);
-         }
-     }
 
     public List<GiftType> findAllGiftType(){
         List<GiftType> gifts = new ArrayList<>();

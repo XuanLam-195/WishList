@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Help</title>
+    <style>
+        .help-content {
+            display: none;
+        }
+        .help-section.active .help-content {
+            display: block;
+        }
+        .arrow-icon {
+            cursor: pointer;
+            user-select: none;
+            transition: transform 0.3s ease;
+        }
+        .arrow-icon.active {
+            transform: rotate(90deg);
+        }
+        .extra-content {
+            display: none;
+        }
+        .extra-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body style="background-image: url('https://images.pexels.com/photos/6985001/pexels-photo-6985001.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); background-size: cover; background-position: center;">
+<h1>Help</h1>
+<p>
+    If you can't find the answer to your question here, please don't hesitate to get in touch.
+</p>
+<div class="help-section" id="generalHelp">
+    <h2 class="help-title">
+        General
+        <span class="arrow-icon" onclick="toggleHelpContent('generalHelp')">►</span>
+    </h2>
+    <div class="help-content">
+        What is My Wishlist?
+        <span class="arrow-icon" onclick="toggleExtraContent('extraContent1')">►</span>
+        <div class="extra-content" id="extraContent1">
+            <p>
+                On My Wishlist you can create a wishlist. Easy and for free.
+                Creating a Secret Santa is also possible.
+            </p>
+        </div>
+    </div>
+
+    <div class="help-content">
+        Is Wishlist for free?
+        <span class="arrow-icon" onclick="toggleExtraContent('extraContent2')">►</span>
+        <div class="extra-content" id="extraContent2">
+            <p>
+                Yes, you can use My Wishlist at no cost at all.
+            </p>
+        </div>
+    </div>
+
+    <div class="help-content">
+        How do I create a Wishlist?
+        <span class="arrow-icon" onclick="toggleExtraContent('extraContent3')">►</span>
+        <div class="extra-content" id="extraContent3">
+            <p>
+                After registering, your wishlist is created immediately. You can then start adding items.
+            </p>
+        </div>
+    </div>
+
+    <div class="help-content">
+        Does my Wishlist have an app?
+        <span class="arrow-icon" onclick="toggleExtraContent('extraContent4')">►</span>
+        <div class="extra-content" id="extraContent4">
+            <p>
+                My Wishlist is a "web app", which you can add to your home screen:
+                Apple: In Safari, click the share icon, and select "Add to Home Screen".
+                Android: In Chrome, open the menu, and select "Add to Home Screen".
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleHelpContent(helpSectionId) {
+        var helpSection = document.getElementById(helpSectionId);
+        helpSection.classList.toggle('active');
+        var arrowIcon = helpSection.querySelector('.arrow-icon');
+        arrowIcon.classList.toggle('active');
+    }
+
+    function toggleExtraContent(extraContentId) {
+        var extraContent = document.getElementById(extraContentId);
+        extraContent.classList.toggle('active');
+    }
+</script>
+</body>
+</html>
